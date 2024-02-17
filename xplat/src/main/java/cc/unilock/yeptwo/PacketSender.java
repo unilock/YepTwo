@@ -39,13 +39,12 @@ public class PacketSender {
                 var title = display.getTitle().getString();
                 var description = display.getDescription().getString();
 
-                Identifier yepId;
-                switch (display.getFrame()) {
-                    case CHALLENGE -> yepId = VCD_ADV_CHALLENGE;
-                    case GOAL -> yepId = VCD_ADV_GOAL;
-                    case TASK -> yepId = VCD_ADV_TASK;
-                    default -> yepId = VCD_ADV_DEFAULT;
-                }
+                Identifier yepId = switch (display.getFrame()) {
+                    case CHALLENGE -> VCD_ADV_CHALLENGE;
+                    case GOAL -> VCD_ADV_GOAL;
+                    case TASK -> VCD_ADV_TASK;
+                    default -> VCD_ADV_DEFAULT;
+                };
 
                 String msg = String.format(VCD_ADV_FORMAT, yepId, username, title, description);
                 sendMessage(spe, msg);
