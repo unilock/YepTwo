@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "examplemod",
+  "version": "${version}",
+  "name": "Example Mod",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "unilock"
+  ],
+  "contact": {
+    "sources": "https://github.com/unilock/ExampleMod",
+    "issues": "https://github.com/unilock/ExampleMod/issues"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "cc.unilock.examplemod.fabric.ExampleModFabric"
+    ]
+  },
+  "mixins": [
+    "examplemod.mixins.json",
+    "examplemod-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": ">=1.20",
+    "fabric-api": ">=0.83.0"
+  }
+}

@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+issueTrackerURL = "https://github.com/unilock/ExampleMod/issues"
+license = "MIT"
+
+[[mods]]
+modId = "examplemod"
+version = "${version}"
+displayName = "Example Mod"
+authors = "unilock"
+description = '''
+This is an example description! Tell everyone what your mod is about!
+'''
+logoFile = "icon.png"
+
+[[dependencies.examplemod]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.examplemod]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,)"
+ordering = "NONE"
+side = "BOTH"

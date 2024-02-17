@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "cc.unilock.examplemod.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "mixins": [],
+  "client": [
+    "MixinTitleScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
