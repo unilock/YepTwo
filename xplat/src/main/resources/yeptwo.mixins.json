@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "cc.unilock.examplemod.mixin.forge",
+  "package": "cc.unilock.yeptwo.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [],

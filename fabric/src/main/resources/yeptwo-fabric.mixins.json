@@ -1,12 +1,12 @@
 {
   "required": true,
-  "package": "cc.unilock.examplemod.mixin",
+  "package": "cc.unilock.yeptwo.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
-  "mixins": [],
-  "client": [
-    "MixinTitleScreen"
+  "mixins": [
+    "PlayerAdvancementTrackerMixin"
   ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

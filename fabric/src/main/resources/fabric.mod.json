@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "yeptwo",
   "version": "${version}",
-  "name": "Example Mod",
+  "name": "Yep",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "unilock"
   ],
   "contact": {
-    "sources": "https://github.com/unilock/ExampleMod",
-    "issues": "https://github.com/unilock/ExampleMod/issues"
+    "sources": "https://github.com/unilock/YepTwo",
+    "issues": "https://github.com/unilock/YepTwo/issues"
   },
   "license": "MIT",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "cc.unilock.examplemod.fabric.ExampleModFabric"
+      "cc.unilock.yeptwo.fabric.YepTwoFabric"
     ]
   },
   "mixins": [
-    "examplemod.mixins.json",
-    "examplemod-fabric.mixins.json"
+    "yeptwo.mixins.json",
+    "yeptwo-fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": "*",

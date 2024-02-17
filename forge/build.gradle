@@ -9,8 +9,6 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = project(":xplat").loom.accessWidenerPath
-
     mods {
         main {
             sourceSet project(':xplat').sourceSets.main
@@ -19,10 +17,9 @@ loom {
 
     forge {
         convertAccessWideners = true
-        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        mixinConfig "examplemod.mixins.json"
-        mixinConfig "examplemod-forge.mixins.json"
+        mixinConfig "yeptwo.mixins.json"
+        mixinConfig "yeptwo-forge.mixins.json"
     }
 }
 
@@ -51,7 +48,6 @@ processResources {
 
 shadowJar {
     exclude "fabric.mod.json"
-    exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
     archiveClassifier = "dev-shadow"
