@@ -24,10 +24,10 @@ public class PacketSender {
     private static final Identifier YEP_ADVANCEMENT = new Identifier("yep", "advancement");
     private static final Identifier YEP_DEATH = new Identifier("yep", "death");
 
-    private static final String YEP_ADV_DEFAULT = "default";
-    private static final String YEP_ADV_GOAL = "goal";
-    private static final String YEP_ADV_TASK = "task";
-    private static final String YEP_ADV_CHALLENGE = "challenge";
+    private static final String YEP_ADV_DEFAULT = "DEFAULT";
+    private static final String YEP_ADV_GOAL = "GOAL";
+    private static final String YEP_ADV_TASK = "TASK";
+    private static final String YEP_ADV_CHALLENGE = "CHALLENGE";
 
 
     public static void sendAdvancementMessage(PlayerEntity player, Advancement advancement) {
