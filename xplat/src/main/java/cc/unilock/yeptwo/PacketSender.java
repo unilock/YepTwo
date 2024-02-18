@@ -16,15 +16,19 @@ import java.nio.charset.StandardCharsets;
 public class PacketSender {
     private static final Identifier YEP_GENERIC = new Identifier("yep", "generic");
 
-    private static final String VCD_ADV_FORMAT = "%s␞%s␟%s␟%s";
-    private static final String VCD_DEATH_FORMAT = "%s␞%s␟%s";
+    // id : username : displayname : advType : title : description
+    private static final String YEP_ADV_FORMAT = "%s␞%s␟%s␟%s␟%s␟%s";
+    // id : username : displayname : message
+    private static final String YEP_DEATH_FORMAT = "%s␞%s␟%s␟%s";
 
-    private static final Identifier VCD_ADV_DEFAULT = new Identifier("vcd", "adv_default");
-    private static final Identifier VCD_ADV_GOAL = new Identifier("vcd", "adv_goal");
-    private static final Identifier VCD_ADV_TASK = new Identifier("vcd", "adv_task");
-    private static final Identifier VCD_ADV_CHALLENGE = new Identifier("vcd", "adv_challenge");
+    private static final Identifier YEP_ADVANCEMENT = new Identifier("yep", "advancement");
+    private static final Identifier YEP_DEATH = new Identifier("yep", "death");
 
-    private static final Identifier VCD_DEATH = new Identifier("vcd", "death");
+    private static final String YEP_ADV_DEFAULT = "default";
+    private static final String YEP_ADV_GOAL = "goal";
+    private static final String YEP_ADV_TASK = "task";
+    private static final String YEP_ADV_CHALLENGE = "challenge";
+
 
     public static void sendAdvancementMessage(PlayerEntity player, Advancement advancement) {
         if (player instanceof ServerPlayerEntity spe) {
@@ -35,18 +39,19 @@ public class PacketSender {
                     && display.shouldAnnounceToChat()
                     && spe.getWorld().getGameRules().getBoolean(GameRules.ANNOUNCE_ADVANCEMENTS)
             ) {
-                var username = spe.getDisplayName().getString();
+                var username = spe.getName().getString();
+                var displayname = spe.getDisplayName().getString();
                 var title = display.getTitle().getString();
                 var description = display.getDescription().getString();
 
-                Identifier yepId = switch (display.getFrame()) {
-                    case CHALLENGE -> VCD_ADV_CHALLENGE;
-                    case GOAL -> VCD_ADV_GOAL;
-                    case TASK -> VCD_ADV_TASK;
-                    default -> VCD_ADV_DEFAULT;
+                String advType = switch (display.getFrame()) {
+                    case CHALLENGE -> YEP_ADV_CHALLENGE;
+                    case GOAL -> YEP_ADV_GOAL;
+                    case TASK -> YEP_ADV_TASK;
+                    default -> YEP_ADV_DEFAULT;
                 };
 
-                String msg = String.format(VCD_ADV_FORMAT, yepId, username, title, description);
+                String msg = String.format(YEP_ADV_FORMAT, YEP_ADVANCEMENT, username, displayname, advType, title, description);
                 sendMessage(spe, msg);
             }
         }
@@ -54,16 +59,17 @@ public class PacketSender {
 
     public static void sendDeathMessage(Entity entity, DamageSource source) {
         if (entity instanceof ServerPlayerEntity spe) {
-            var username = spe.getDisplayName().getString();
+            var username = spe.getName().getString();
+            var displayname = spe.getDisplayName().getString();
             var message = source.getDeathMessage(spe).getString();
 
-            String msg = String.format(VCD_DEATH_FORMAT, VCD_DEATH, username, message);
+            String msg = String.format(YEP_DEATH_FORMAT, YEP_DEATH, username, displayname, message);
             sendMessage(spe, msg);
         }
     }
 
     private static void sendMessage(ServerPlayerEntity player, String msg) {
-        YepTwo.LOGGER.debug("Sending message "+msg+" for player "+player.getName().getString());
+        YepTwo.LOGGER.debug("Sending message \""+msg+"\" for player \""+player.getName().getString()+"\"");
 
         PacketByteBuf payload = new PacketByteBuf(Unpooled.wrappedBuffer(msg.getBytes(StandardCharsets.UTF_8)));
         player.networkHandler.sendPacket(new CustomPayloadS2CPacket(YEP_GENERIC, payload));
