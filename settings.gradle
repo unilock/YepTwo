@@ -9,6 +9,6 @@ pluginManagement {
 
 include("xplat")
 include("fabric")
-include("forge")
+include("neoforge")
 
 rootProject.name = "yeptwo"

@@ -5,7 +5,7 @@ evaluationDependsOn ':xplat'
 
 architectury {
     platformSetupLoomIde()
-    forge()
+    neoForge()
 }
 
 loom {
@@ -14,13 +14,6 @@ loom {
             sourceSet project(':xplat').sourceSets.main
         }
     }
-
-    forge {
-        convertAccessWideners = true
-
-        mixinConfig "yeptwo.mixins.json"
-        mixinConfig "yeptwo-forge.mixins.json"
-    }
 }
 
 configurations {
@@ -28,14 +21,24 @@ configurations {
     shadowCommon
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
+    developmentNeoForge.extendsFrom common
+}
+
+repositories {
+    maven {
+        url "https://maven.neoforged.net/releases/"
+        content {
+            includeGroupAndSubgroups "net.neoforged"
+            includeGroupAndSubgroups "cpw.mods"
+        }
+    }
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
 
     common(project(path: ":xplat", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":xplat", configuration: "transformProductionForge")) { transitive = false }
+    shadowCommon(project(path: ":xplat", configuration: "transformProductionNeoForge")) { transitive = false }
 }
 
 processResources {
@@ -72,7 +75,7 @@ components.java {
 
 publishing {
     publications {
-        mavenForge(MavenPublication) {
+        mavenNeoForge(MavenPublication) {
             artifactId = rootProject.archives_base_name + "-" + project.name
             from components.java
         }

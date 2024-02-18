@@ -1,12 +1,12 @@
 package cc.unilock.yeptwo;
 
 import io.netty.buffer.Unpooled;
-import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.network.packet.s2c.common.CustomPayloadS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.GameRules;
@@ -30,9 +30,9 @@ public class PacketSender {
     private static final String YEP_ADV_CHALLENGE = "CHALLENGE";
 
 
-    public static void sendAdvancementMessage(PlayerEntity player, Advancement advancement) {
+    public static void sendAdvancementMessage(PlayerEntity player, AdvancementEntry advancement) {
         if (player instanceof ServerPlayerEntity spe) {
-            var display = advancement.getDisplay();
+            var display = advancement.value().display().orElse(null);
 
             if (spe.getAdvancementTracker().getProgress(advancement).isDone()
                     && display != null
@@ -71,7 +71,7 @@ public class PacketSender {
     private static void sendMessage(ServerPlayerEntity player, String msg) {
         YepTwo.LOGGER.debug("Sending message \""+msg+"\" for player \""+player.getName().getString()+"\"");
 
-        PacketByteBuf payload = new PacketByteBuf(Unpooled.wrappedBuffer(msg.getBytes(StandardCharsets.UTF_8)));
-        player.networkHandler.sendPacket(new CustomPayloadS2CPacket(YEP_GENERIC, payload));
+        PacketByteBuf payload = new PacketByteBuf(Unpooled.wrappedBuffer(msg.getBytes(StandardCharsets.UTF_8))).writeIdentifier(YEP_GENERIC);
+        player.networkHandler.sendPacket(new CustomPayloadS2CPacket(payload));
     }
 }

@@ -1,7 +1,7 @@
 package cc.unilock.yeptwo.fabric.mixin;
 
 import cc.unilock.yeptwo.PacketSender;
-import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,8 +15,8 @@ public class PlayerAdvancementTrackerMixin {
     @Shadow
     private ServerPlayerEntity owner;
 
-    @Inject(method = "grantCriterion", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/PlayerAdvancementTracker;onStatusUpdate(Lnet/minecraft/advancement/Advancement;)V"))
-    private void onStatusUpdate(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "grantCriterion", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/PlayerAdvancementTracker;onStatusUpdate(Lnet/minecraft/advancement/AdvancementEntry;)V"))
+    private void onStatusUpdate(AdvancementEntry advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         PacketSender.sendAdvancementMessage(this.owner, advancement);
     }
 }

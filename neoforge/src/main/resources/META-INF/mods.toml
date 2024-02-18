@@ -1,7 +1,13 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[1,)"
 issueTrackerURL = "https://github.com/unilock/YepTwo/issues"
 license = "MIT"
+
+[[mixins]]
+config="yeptwo.mixins.json"
+
+[[mixins]]
+config="yeptwo-neoforge.mixins.json"
 
 [[mods]]
 modId = "yeptwo"
@@ -15,15 +21,15 @@ logoFile = "icon.png"
 displayTest = "IGNORE_SERVER_VERSION"
 
 [[dependencies.yeptwo]]
-modId = "forge"
+modId = "neoforge"
 mandatory = true
-versionRange = "[47,)"
+versionRange = "[1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.yeptwo]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20,)"
+versionRange = "[1.20.4,)"
 ordering = "NONE"
 side = "BOTH"

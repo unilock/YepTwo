@@ -1,18 +1,18 @@
-package cc.unilock.yeptwo.forge;
+package cc.unilock.yeptwo.neoforge;
 
 import cc.unilock.yeptwo.PacketSender;
 import cc.unilock.yeptwo.YepTwo;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.AdvancementEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 
 @Mod(YepTwo.MOD_ID)
-public class YepTwoForge {
-    public YepTwoForge() {
+public class YepTwoNeoForge {
+    public YepTwoNeoForge() {
         YepTwo.init();
-        MinecraftForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
