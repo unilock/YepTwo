@@ -71,7 +71,8 @@ public class PacketSender {
     private static void sendMessage(ServerPlayerEntity player, String msg) {
         YepTwo.LOGGER.debug("Sending message \""+msg+"\" for player \""+player.getName().getString()+"\"");
 
-        PacketByteBuf payload = new PacketByteBuf(Unpooled.wrappedBuffer(msg.getBytes(StandardCharsets.UTF_8)));
-        player.networkHandler.sendPacket(new CustomPayloadS2CPacket(YEP_GENERIC, payload));
+        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+        buf.writeBytes(msg.getBytes(StandardCharsets.UTF_8));
+        player.networkHandler.sendPacket(new CustomPayloadS2CPacket(YEP_GENERIC, buf));
     }
 }
