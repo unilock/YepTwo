@@ -1,7 +1,7 @@
 package cc.unilock.yeptwo.neoforge;
 
-import cc.unilock.yeptwo.PacketSender;
 import cc.unilock.yeptwo.YepTwo;
+import cc.unilock.yeptwo.networking.PacketSender;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
