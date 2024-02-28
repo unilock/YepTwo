@@ -1,6 +1,6 @@
 package cc.unilock.yeptwo.fabric.mixin;
 
-import cc.unilock.yeptwo.PacketSender;
+import cc.unilock.yeptwo.networking.PacketSender;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.server.network.ServerPlayerEntity;

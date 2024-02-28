@@ -1,7 +1,7 @@
 package cc.unilock.yeptwo.forge;
 
-import cc.unilock.yeptwo.PacketSender;
 import cc.unilock.yeptwo.YepTwo;
+import cc.unilock.yeptwo.networking.PacketSender;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
