@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.player.AchievementEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = YepTwo.MOD_ID, version = Tags.VERSION, name = "YepTwo", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = YepTwo.MOD_ID, version = Tags.VERSION, name = "YepTwo", acceptedMinecraftVersions = "[1.7.10]", acceptableRemoteVersions = "*")
 public class YepTwo {
     public static final String MOD_ID = "yeptwo";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
